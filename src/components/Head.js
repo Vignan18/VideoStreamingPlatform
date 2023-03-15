@@ -42,19 +42,29 @@ const Head = () => {
   };
 
   const searchResults = (e)=>{
-    let qry = e.target.innerText.replace("🔍","").trim();
-    setSearchQuery(qry);
+    let qry;
+    if(e){
+       qry = e.target.innerText.replace("🔍","").trim();
+      setSearchQuery(qry);
+    }
+    else{
+      qry = searchQuery;
+    }
+    
     setShowSuggestions(false);
     dispatch(searchQueryfn(qry))
   }
 
+  const handleSearch = ()=>{
+    searchResults()
+  }
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
 
   return (
-    <div className="grid grid-flow-col p-5 m-2 shadow">
+    <div className="sticky top-0 grid grid-flow-col p-5 m-2 shadow bg-white">
       <div className="flex col-span-1">
         <img
           className="h-8 hover:cursor-pointer"
@@ -78,9 +88,9 @@ const Head = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => setShowSuggestions(true)}
-          //  onBlur={() => setShowSuggestions(false)}
+          onBlur={() => setShowSuggestions(false)}
         />
-        <button className="border border-gray-400 px-5 py-2 rounded-r-full bg-gray-100">
+        <button className="border border-gray-400 px-5 py-2 rounded-r-full bg-gray-100" onClick={handleSearch}>
           🔍
         </button>
       </div>
@@ -88,7 +98,7 @@ const Head = () => {
           <div className="fixed bg-white py-2 px-2 w-[37rem] shadow-lg rounded-lg border border-gray-100">
             <ul>
               {suggestions.map((s) => (
-                <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100" onClick={searchResults}>
+                <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100" onMouseDown={searchResults}>
                   🔍 {s}
                 </li>
               ))}

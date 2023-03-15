@@ -10,7 +10,7 @@ export const GET_COMMENTS_API =
     "&videoId=";
 
 export const GET_LIST_OF_VIDEOS_API =
-    "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=" +
+    "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&key=" +
     API_KEY +
     "&q=";
 
