@@ -2,14 +2,15 @@ import React,{useState,useEffect} from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import {YOUTUBE_SEARCH_API} from "../utils/constants";
-import { cacheResults } from "../utils/searchSlice";
+import { cacheResults,searchQueryfn } from "../utils/searchSlice";
+
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const searchCache = useSelector((store) => store.search);
+  const searchCache = useSelector((store) => store.search.searchCache);
   const dispatch = useDispatch();
 
 
@@ -18,7 +19,7 @@ const Head = () => {
       if (searchCache[searchQuery]) {
         setSuggestions(searchCache[searchQuery]);
       } else {
-        getSearchSuggesestions();
+        getSearchSugsestions();
       }
     }, 200);
 
@@ -28,7 +29,7 @@ const Head = () => {
   }, [searchQuery]);
 
 
-  const getSearchSuggesestions = async () => {
+  const getSearchSugsestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
     setSuggestions(json[1]);
@@ -40,7 +41,12 @@ const Head = () => {
     );
   };
 
-
+  const searchResults = (e)=>{
+    let qry = e.target.innerText.replace("🔍","").trim();
+    setSearchQuery(qry);
+    setShowSuggestions(false);
+    dispatch(searchQueryfn(qry))
+  }
 
 
   const toggleMenuHandler = () => {
@@ -72,7 +78,7 @@ const Head = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => setShowSuggestions(true)}
-          onBlur={() => setShowSuggestions(false)}
+          //  onBlur={() => setShowSuggestions(false)}
         />
         <button className="border border-gray-400 px-5 py-2 rounded-r-full bg-gray-100">
           🔍
@@ -82,7 +88,7 @@ const Head = () => {
           <div className="fixed bg-white py-2 px-2 w-[37rem] shadow-lg rounded-lg border border-gray-100">
             <ul>
               {suggestions.map((s) => (
-                <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100">
+                <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100" onClick={searchResults}>
                   🔍 {s}
                 </li>
               ))}

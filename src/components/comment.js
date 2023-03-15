@@ -8,7 +8,7 @@
       <div className="flex p-2 rounded-lg my-2">
         <img
           className="w-12 h-12 rounded-full	"
-          alt="user"
+          alt="img"
           src={imageURL}
         />
         <div className="px-3">
