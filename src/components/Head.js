@@ -19,7 +19,7 @@ const Head = () => {
       if (searchCache[searchQuery]) {
         setSuggestions(searchCache[searchQuery]);
       } else {
-        getSearchSugsestions();
+        getSearchSuggestions();
       }
     }, 200);
 
@@ -29,7 +29,7 @@ const Head = () => {
   }, [searchQuery]);
 
 
-  const getSearchSugsestions = async () => {
+  const getSearchSuggestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
     setSuggestions(json[1]);
@@ -66,6 +66,7 @@ const Head = () => {
     }}
 
   const handleSearch = throttle(() => {
+    
     searchResults()
   }, 5000)
 
