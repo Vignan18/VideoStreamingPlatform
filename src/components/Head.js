@@ -55,9 +55,19 @@ const Head = () => {
     dispatch(searchQueryfn(qry))
   }
 
-  const handleSearch = ()=>{
+  
+  const throttle = (cb, d)=>{
+    let last = 0;
+    return (...args)=>{
+      let now = new Date().getTime();
+      if(now-last<d) return;
+      last = now;
+      return cb(...args);
+    }}
+
+  const handleSearch = throttle(() => {
     searchResults()
-  }
+  }, 5000)
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
