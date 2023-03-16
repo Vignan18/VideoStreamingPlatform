@@ -66,8 +66,9 @@ const Head = () => {
     }}
 
   const handleSearch = throttle(() => {
-    
-    searchResults()
+    if(searchQuery.length!=0){
+      searchResults()
+    }
   }, 5000)
 
   const toggleMenuHandler = () => {
