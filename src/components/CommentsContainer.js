@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import {GET_COMMENTS_API} from "../utils/constants";
-import Comment from "./comment";
+import Comment from "./Comment";
 
 const CommentsList = ({ comments }) => {
   return comments.map((comment, index) => (

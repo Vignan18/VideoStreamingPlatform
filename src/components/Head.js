@@ -90,6 +90,8 @@ const Head = () => {
           className="h-8 mx-2 hover:cursor-pointer"
           alt="youtube-logo"
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/2560px-YouTube_Logo_2017.svg.png"
+         
+          
         />
       </div>
       <div className="col-span-10">
