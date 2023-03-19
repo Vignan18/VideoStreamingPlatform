@@ -1,5 +1,4 @@
-
- export default  Comment = ({ data }) => {
+ export default Comment = ({ data }) => {
     const snippet = data.snippet.topLevelComment?data.snippet.topLevelComment.snippet:data.snippet;
     const authorName = snippet.authorDisplayName;
     const imageURL = snippet.authorProfileImageUrl;
