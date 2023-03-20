@@ -21,11 +21,13 @@ const VideoContainer = () => {
       json = await data.json();
      
       filteredData = json.items.filter((data)=> data.id.videoId!==undefined);
+      console.log(filteredData);
       setVideos(filteredData)
     }
     else {
       data = await fetch(YOUTUBE_VIDEOS_API);
       json = await data.json();
+      console.log(json.items);
       setVideos(json.items);
     }
    

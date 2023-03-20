@@ -5,6 +5,9 @@ import {GET_COMMENTS_API} from "../utils/constants";
 import Comment from "./Comment";
 
 const CommentsList = ({ comments }) => {
+  if(!comments){
+    return null;
+  }
   return comments.map((comment, index) => (
     <div key={index}>
       <Comment data={comment} />
