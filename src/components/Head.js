@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { toggleMenu } from "../utils/appSlice";
 import {YOUTUBE_SEARCH_API} from "../utils/constants";
+import { Link } from "react-router-dom";
 import { cacheResults,searchQueryfn } from "../utils/searchSlice";
 
 
@@ -89,9 +89,7 @@ const Head = () => {
         <img
           className="h-8 mx-2 hover:cursor-pointer"
           alt="youtube-logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/2560px-YouTube_Logo_2017.svg.png"
-         
-          
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/2560px-YouTube_Logo_2017.svg.png" 
         />
       </div>
       <div className="col-span-10">
@@ -104,8 +102,8 @@ const Head = () => {
           onFocus={() => setShowSuggestions(true)}
           onBlur={() => setShowSuggestions(false)}
         />
-        <Link to="/">
-        <button className="border border-gray-400 px-5 py-2 rounded-r-full bg-gray-100" onClick={handleSearch}>
+        
+        <Link to="/"><button className="border border-gray-400 px-5 py-2 rounded-r-full bg-gray-100" onClick={handleSearch}>
           🔍
         </button></Link>
 

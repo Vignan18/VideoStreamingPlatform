@@ -10,7 +10,11 @@ import store from "./utils/store";
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Body />,
+    element: (
+      <div>
+        <Head />
+        <Body />
+      </div>),
     children: [
       {
         path: "/",
@@ -28,7 +32,7 @@ function App() {
   return (
     <Provider store={store}>
       <div>
-        <Head />
+
         <RouterProvider router={appRouter} />
       </div>
     </Provider>
